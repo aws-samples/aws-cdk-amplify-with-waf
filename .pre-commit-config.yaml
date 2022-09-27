@@ -1,0 +1,74 @@
+repos:
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        args: ["--profile", "black"]
+        verbose: true
+  - repo: https://github.com/psf/black
+    rev: 21.12b0 # Replace with any tag/version: https://github.com/psf/black/tags
+    hooks:
+      - id: black
+        language_version: python3 # Should be a command that runs python3.7+
+        verbose: true
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=150', '--ignore=E203, A002', '--max-cognitive-complexity=14', '--max-expression-complexity=7' ]
+        additional_dependencies: [
+          flake8-bugbear, # Detect potential bugs
+          flake8-builtins, # Check for built-ins being used as variables
+          flake8-cognitive-complexity, # Check max function complexity
+          flake8-comprehensions, # Suggestions for better list/set/dict comprehensions 
+          flake8-eradicate, # Find dead/commented out code
+          flake8-expression-complexity, # Check max expression complexity
+          flake8-fixme, # Check for FIXME, TODO, and XXX left in comments
+          flake8-logging-format, # Validate (lack of) logging format strings
+          flake8-mutable, # Check for mutable default arguments
+          flake8-pie, # Misc. linting rules
+          flake8-pytest-style, # Check against pytest style guide
+          flake8-return, # Check return statements
+          flake8-simplify, # Suggestions to simplify code
+          flake8-use-fstring, # Encourages use of f-strings vs old style
+          pep8-naming, # Check PEP8 class naming
+        ]
+        verbose: true
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.2.2
+    hooks:
+    - id: python-safety-dependencies-check
+      verbose: true
+  - repo: https://github.com/awslabs/git-secrets
+    rev: 80230afa8c8bdeac766a0fece36f95ffaa0be778
+    hooks:
+      - id: git-secrets
+        verbose: true
+        entry: 'git-secrets --register-aws'
+        language: script
+        name: git-secrets-register-aws-provider
+      - id: git-secrets
+        verbose: true
+        entry: 'git-secrets --scan'
+        language: script
+        name: git-secrets-scan
+  - repo: https://github.com/markdownlint/markdownlint
+    rev: v0.11.0
+    hooks:
+      - id: markdownlint
+        name: Markdownlint
+        description: Run markdownlint on your Markdown files
+        entry: mdl .
+        language: ruby
+        files: \.(md|mdown|markdown)$
+        verbose: true
+        args:
+          - "-s"
+          - "mdl_style.rb"
+  - repo: https://github.com/PyCQA/bandit
+    rev: '1.7.1'
+    hooks:
+      - id: bandit
+        entry: bandit
+        exclude: ^tests/
+        verbose: true

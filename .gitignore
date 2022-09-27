@@ -1,0 +1,11 @@
+*.swp
+__pycache__
+.pytest_cache
+.venv
+*.egg-info
+.coverage
+.markdownlint*
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+cdk.context.json
