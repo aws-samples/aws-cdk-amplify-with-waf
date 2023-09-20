@@ -3,6 +3,8 @@ from urllib.parse import quote
 
 import aws_cdk.aws_cloudfront as cloudfront
 import aws_cdk.aws_cloudfront_origins as origins
+import aws_cdk.aws_route53 as route53
+import aws_cdk.aws_certificatemanager as certificatemanager
 from aws_cdk import Aws, CfnOutput, CustomResource, Duration, Stack
 from aws_cdk import aws_events as events
 from aws_cdk import aws_events_targets as targets
@@ -25,6 +27,9 @@ class CustomAmplifyDistributionStack(Stack):
         web_acl_arn: str,
         app_id: str,
         branch_name: str,
+        hosted_zone_id: str,
+        hosted_zone_name: str,
+        acm_arn: str,
         **kwargs,
     ):
         super().__init__(scope, id, **kwargs)
@@ -164,6 +169,10 @@ class CustomAmplifyDistributionStack(Stack):
                 ),
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             ),
+            certificate=certificatemanager.Certificate.from_certificate_arn(self, "cfDomainCert", acm_arn),
+            domain_names=[
+                f"{formatted_amplify_branch}.{app_id}.{hosted_zone_name}",
+            ],
             price_class=cloudfront.PriceClass.PRICE_CLASS_ALL,
             web_acl_id=web_acl_arn,
         )
@@ -238,6 +247,17 @@ class CustomAmplifyDistributionStack(Stack):
             targets=[
                 targets.LambdaFunction(cache_invalidation_function, retry_attempts=2)
             ],
+        )
+
+        zone = route53.HostedZone.from_hosted_zone_attributes(self, "HostedZone",
+            hosted_zone_id=hosted_zone_id,
+            zone_name=hosted_zone_name
+        )
+
+        route53.CnameRecord(self, "CnameCloudfrontRecord",
+            record_name=branch_name,
+            zone=zone,
+            domain_name=amplify_app_distribution.domain_name
         )
 
         CfnOutput(
