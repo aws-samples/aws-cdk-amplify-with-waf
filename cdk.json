@@ -23,6 +23,9 @@
     "@aws-cdk/core:target-partitions": ["aws", "aws-cn"],
     "web_acl_arn":"<<ARN FOR WEB ACL>>",
     "app_id":"<<AMPLIFY APP ID>>",
-    "branch_name":"<<AMPLIFY BRANCH NAME>>"
+    "branch_name":"<<AMPLIFY BRANCH NAME>>",
+    "hosted_zone_id":"<<HOSTED ZONE ID>>",
+    "hosted_zone_name":"<<HOSTED ZONE NAME>>",
+    "acm_arn":"<<ACM ARN>>"
   }
 }

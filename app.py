@@ -25,6 +25,9 @@ CustomAmplifyDistributionStack(
     web_acl_arn=app.node.try_get_context("web_acl_arn"),
     app_id=app.node.try_get_context("app_id"),
     branch_name=app.node.try_get_context("branch_name"),
+    hosted_zone_id=app.node.try_get_context("hosted_zone_id"),
+    hosted_zone_name=app.node.try_get_context("hosted_zone_name"),
+    acm_arn=app.node.try_get_context("acm_arn"),
 )
 
 Aspects.of(app).add(AwsSolutionsChecks())
