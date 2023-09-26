@@ -21,11 +21,11 @@
     "@aws-cdk-containers/ecs-service-extensions:enableDefaultLogDriver": true,
     "@aws-cdk/aws-ec2:uniqueImdsv2TemplateName": true,
     "@aws-cdk/core:target-partitions": ["aws", "aws-cn"],
-    "web_acl_arn":"<<ARN FOR WEB ACL>>",
-    "app_id":"<<AMPLIFY APP ID>>",
-    "branch_name":"<<AMPLIFY BRANCH NAME>>",
-    "hosted_zone_id":"<<HOSTED ZONE ID>>",
-    "hosted_zone_name":"<<HOSTED ZONE NAME>>",
-    "acm_arn":"<<ACM ARN>>"
+    "web_acl_arn":"arn:aws:wafv2:us-east-1:185236431346:global/webacl/com-global-cf-waf-acl-dev/13b6854d-6b97-43ac-abff-46c2d59c989a",
+    "app_id":"d25dwzycwrtjtq",
+    "branch_name":"gaori-31",
+    "hosted_zone_id":"Z0586660UGM1MYQLA0GX",
+    "hosted_zone_name":"jws.af.dev.3o3.co.kr",
+    "acm_arn":"arn:aws:acm:us-east-1:185236431346:certificate/afbb768f-8249-4214-98ad-c9a81ed9b466"
   }
 }

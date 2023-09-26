@@ -16,7 +16,7 @@ CustomWebAclStack(
 )
 CustomAmplifyDistributionStack(
     app,
-    "CustomAmplifyDistributionStack",
+    "Amplify-Waf-d25dwzycwrtjtq-gaori-31",
     description="This stack creates a custom CloudFront distribution pointing to \
         Amplify app's default CloudFront distribution. \
         It also enables Basic Auth protection on specified branch. \

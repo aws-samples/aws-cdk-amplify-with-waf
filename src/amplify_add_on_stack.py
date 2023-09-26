@@ -171,7 +171,7 @@ class CustomAmplifyDistributionStack(Stack):
             ),
             certificate=certificatemanager.Certificate.from_certificate_arn(self, "cfDomainCert", acm_arn),
             domain_names=[
-                f"{formatted_amplify_branch}.{app_id}.{hosted_zone_name}",
+                f"{formatted_amplify_branch}.{hosted_zone_name}",
             ],
             price_class=cloudfront.PriceClass.PRICE_CLASS_ALL,
             web_acl_id=web_acl_arn,
@@ -255,7 +255,7 @@ class CustomAmplifyDistributionStack(Stack):
         )
 
         route53.CnameRecord(self, "CnameCloudfrontRecord",
-            record_name=branch_name,
+            record_name=f"{formatted_amplify_branch}",
             zone=zone,
             domain_name=amplify_app_distribution.domain_name
         )
