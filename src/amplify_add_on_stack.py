@@ -108,7 +108,7 @@ class CustomAmplifyDistributionStack(Stack):
             "rAmplifyAppBranchUpdate",
             policy=custom.AwsCustomResourcePolicy.from_sdk_calls(
                 resources=[
-                    f"arn:aws:amplify:{Aws.REGION}:{Aws.ACCOUNT_ID}:apps/{app_id}/branches/{quote(branch_name, safe='')}",
+                    f"arn:aws:amplify:{Aws.REGION}:{Aws.ACCOUNT_ID}:apps/{app_id}/branches/{branch_name}",
                 ]
             ),
             on_create=custom.AwsSdkCall(
