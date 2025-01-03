@@ -1,4 +1,8 @@
-# Enable WAF for Amplify Hosted web applications
+# Update: Amplify Hosting now supports a native WAF integration
+
+Amplify Hosting now supports a native WAF integration. Get started [here](https://aws.amazon.com/blogs/mobile/aws-amplify-hosting-adds-web-application-firewall-protection-public-preview/).
+
+## Enable WAF for Amplify Hosted web applications
 
 Many AWS Amplify Web Applications do not have a firewall attached at all,
 simply because the integration with AWS WAF does not exist natively.
